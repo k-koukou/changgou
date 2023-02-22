@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>所有</title>
+    <link rel="stylesheet" th:href="@{../../static/css/index_work.css}">
+    <link  th:href="@{../../static/js/vue.js}">
+</head>
+<body>
+<table >
+    <tr>
+        <th colspan="6">员工列表</th>
+    </tr>
+    <tr>
+        <th>序列号</th>
+        <th>员工姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>邮箱</th>
+        <th>操作</th>
+    </tr>
+    <tr th:each="employee,status : ${pageHelper.list}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${employee.empName}"></td>
+        <td th:text="${employee.age}"></td>
+        <td th:text="${employee.gender}"></td>
+        <td th:text="${employee.email}"></td>
+        <td >
+            <a th:href="@{'/updateById/'+ ${employee.empId}}">修改</a>
+            <a th:href="@{'/getByIdDelete/'+ ${employee.empId}}">删除</a>
+        </td>
+    </tr>
+</table>
+
+<!--
+pageNum：当前页的页码
+pageSize：每页显示的条数
+size：当前页显示的真实条数
+total：总记录数
+pages：总页数
+prePage：上一页的页码
+nextPage：下一页的页码
+isFirstPage/isLastPage：是否为第一页/最后一页
+hasPreviousPage/hasNextPage：是否存在上一页/下一页
+navigatePages：导航分页的页码数
+navigatepageNums：导航分页的页码，[1,2,3,4,5]
+-->
+<div style="text-align: center;">
+    <a th:if="${pageHelper.pageNum>1}" th:href="#{/pagehelper/1}">首页</a>
+    <a th:if="${pageHelper.pageNum>1}"  th:href="#{'/pagehelper/'+ ${pageHelper.pageNum - 1}}">上一页</a>
+    <span th:each="num :${pageHelper.navigatepageNums}" >
+        <a th:if="${pageHelper.pageNum == num}"  th:href="@{'/pagehelper/'+${num}}" th:text="'【'+${num}+'】'"  style="color: red"></a>
+        <a  th:if="${pageHelper.pageNum != num}"  th:href="@{'/pagehelper/'+${num}}"   th:text="${num}"></a>
+    </span>
+    <a th:if="${pageHelper.pageNum<pageHelper.pages}" th:href="#{'/pagehelper/'+ ${pageHelper.pageNum+1}}">下一页</a>
+    <a th:if="${pageHelper.pageNum<pageHelper.pages}"   th:href="#{'/pagehelper/'+ ${pageHelper.pages}}">末页</a>
+</div>
+</body>
+</html>

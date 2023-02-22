@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+<h1>首页</h1>
+<a th:href="@{/getAllUser}">查询所有</a>
+<br/>
+<a th:href="@{/add/User}">添加信息</a>
+<br/>
+<a th:href="@{/pagehelper/1}">分页的查询所有</a>
+<br/>
+<h1>事务管理</h1>
+<form  th:action="@{/shiwu}" method="post">
+    <input type="text" name="userId" > 用户名称
+    <br/>
+    <input type="text" name="bookId" > 书名
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>
