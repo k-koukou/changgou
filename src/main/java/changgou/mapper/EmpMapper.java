@@ -39,4 +39,5 @@ public interface EmpMapper {
     /*更新自己的余额*/
     void updateUserBalance (@Param ("userId") Integer userId,  @Param ("price") Integer price);
 
+    void updataTest();
 }

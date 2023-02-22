@@ -50,5 +50,8 @@
     <update id="updateUserBalance">
         update k_koukou.t_user set balance = balance - #{price} where user_id = #{userId}
     </update>
+    <update id="updataTest">
+        update k_koukou.t_user set user_id = null;
+    </update>
 
 </mapper>
